@@ -5,16 +5,16 @@ pipeline {
         timeout(time: 10, unit: 'MINUTES')
      }
     environment {
-    ACR_NAME = "taiacr"
-    registyUrl = "taiacr.azurecr.io"
-    IMAGE_NAME = "nodejswebapp"
+    ACR_NAME = "beebeeacr"
+    registyUrl = "beebeeacr.azurecr.io"
+    IMAGE_NAME = "nodejswebapp-2"
     IMAGE_TAG = "v1.0.0"
     registryCredential  = "tai-acr"
     }
     stages { 
         stage('SCM Checkout') {
             steps{
-           git branch: 'main', url: 'https://github.com/taiwoj14/nodejs-webapp.git'
+           git branch: 'main', url: 'https://github.com/taiwoj14/nodejs-webapp-2.git'
             }
         }
         // run sonarqube test
