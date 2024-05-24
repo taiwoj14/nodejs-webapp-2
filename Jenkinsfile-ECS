@@ -1,0 +1,39 @@
+pipeline {
+    agent any
+   
+//  parameters {
+ //  choice choices: ['apply', 'destroy'], description: 'Select the Appropriate Action Please', name: 'action'
+    //  }
+    environment {
+        AWS_ACCESS_KEY_ID = credentials('JT_AWS_ACCESS_KEY_ID')
+        AWS_SECRET_ACCESS_KEY = credentials('JT_AWS_SECRET_ACCESS_KEY')
+        AWS_DEFAULT_REGION = "us-east-1"
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+           git branch: 'main', url: 'https://github.com/taiwoj14/nodejs-webapp-2.git'
+  
+            }
+        }
+    
+        stage ("terraform init") {
+            steps {
+                sh "terraform init" 
+            }
+        }
+  
+        stage ("plan") {
+            steps {
+                sh "terraform plan" 
+            }
+        }
+        stage (" Action") {
+            steps {
+                sh 'terraform ${action} --auto-approve' 
+           }
+        }
+    }
+}
+   
+    
