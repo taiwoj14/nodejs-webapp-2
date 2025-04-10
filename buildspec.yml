@@ -16,9 +16,9 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 481195358488.dkr.ecr.us-east-1.amazonaws.com
-      - IMAGE_REPO_NAME=481195358488.dkr.ecr.us-east-1.amazonaws.com/nodejswebapp
+      - IMAGE_REPO_NAME=481195358488.dkr.ecr.us-east-1.amazonaws.com/nodejs-april25
       - IMAGE_TAG=latest
-      - aws eks --region us-east-1 update-kubeconfig --name do-go
+      - aws eks --region us-east-1 update-kubeconfig --name k8s-boy
       
   build:
     commands:
